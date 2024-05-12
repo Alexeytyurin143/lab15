@@ -1,0 +1,73 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.personFormWrapper {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.personForm {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 15px;
+  min-width: 300px;
+  padding: 50px;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px 1px #0c0c0c;
+  max-width: 500px;
+  background-color: #2b2b2b;
+}
+
+.personForm > label > input {
+  padding: 12px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.personForm > label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.personForm fieldset div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+table {
+  border-collapse: collapse;
+  width: 700px;
+}
+th,
+td {
+  border: 1px solid #474747;
+  text-align: left;
+  padding: 8px;
+}
+th {
+  background-color: #353535;
+}
+
+@media (prefers-color-scheme: light) {
+  th {
+    color: #000;
+    background-color: #f2f2f2;
+  }
+  .personForm {
+    background-color: rgb(228, 228, 228);
+    box-shadow: 0px 0px 5px 1px #777777;
+  }
+}
