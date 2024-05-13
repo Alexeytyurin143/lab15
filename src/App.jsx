@@ -32,6 +32,43 @@ function App() {
 		)
 	}
 
+	const exportJSON = (e) => {
+		e.preventDefault()
+		const jsonData = JSON.stringify(users)
+
+		const blob = new Blob([jsonData], { type: 'application/json' })
+		const url = URL.createObjectURL(blob)
+
+		const a = document.createElement('a')
+		a.href = url
+		a.download = 'data.json'
+		document.body.appendChild(a)
+		a.click()
+
+		window.URL.revokeObjectURL(url)
+	}
+
+	const importJSON = (e) => {
+		const file = e.target.files[0]
+
+		if (!file) {
+			alert('Please select a file.')
+			return
+		}
+
+		const reader = new FileReader()
+		reader.onload = function (event) {
+			const jsonData = event.target.result
+
+			try {
+				setUsers(JSON.parse(jsonData))
+			} catch (error) {
+				alert('Error parsing JSON file: ' + error.message)
+			}
+		}
+		reader.readAsText(file)
+	}
+
 	return (
 		<>
 			<div className='container'>
@@ -41,8 +78,20 @@ function App() {
 				>
 					Добавить пользователя
 				</button>
-				<div>
+				<div
+					style={{
+						display: 'flex',
+						gap: 15,
+						marginBottom: 15,
+						alignItems: 'baseline',
+					}}
+				>
 					<h2 style={{ fontSize: 25, marginBottom: 20 }}>Список</h2>
+					<button onClick={exportJSON}>Экспорт в JSON</button>
+					<label className='button'>
+						Импорт из JSON{' '}
+						<input onChange={importJSON} type='file' hidden />
+					</label>
 				</div>
 				<table>
 					<thead>
